@@ -18,3 +18,6 @@ INSERT INTO SITES (id,domain,url,threat_rating,malicious)
 VALUES (1,'malware4u.com','www.malware4u.com',95,TRUE),
        (2,'bbc.co.uk','www.bbc.co.uk',5,FALSE),
        (3,'dodgysite.com','www.dodgysite.com',100,TRUE);
+       
+Once the app is running, it should be possible to send an HTTP GET request simalar to the one below and receive a reply...
+ http://localhost:8080/urlinfo/1/bbc.co.uk/www.bbc.co.uk
