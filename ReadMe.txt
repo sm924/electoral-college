@@ -1,4 +1,13 @@
-The app requires a postgres database containing a table called sites. However, tests can still be run without a database available as they will mock the data required. Below is the SQL to create such a table along with an SQL to insert some sample data...
+This app was designed to connect to a (Postgres) database containing a table called sites. However, a separate endpoint is available to call the app without a database being present. The url for the non-database version is in the form urlinfo/1/nodb/{domain}/{url}.
+Also, tests can be run without a database available as they will mock the data required. 
+
+Once the app is running, it should be possible to send an HTTP GET request simalar to the one below and receive a reply...
+ http://localhost:8080/urlinfo/1/bbc.co.uk/http://www.bbc.co.uk
+ 
+If you are using the version without the database configured, then the equivalent request would be...
+ http://localhost:8080/urlinfo/1/nodb/bbc.co.uk/http://www.bbc.co.uk
+
+Below is the SQL to the sites table along with an SQL to insert some sample data...
 
 CREATE TABLE sites
 (
@@ -15,13 +24,9 @@ VALUES (1,'malware4u.com','www.malware4u.com',95,TRUE),
        (3,'dodgysite.com','www.dodgysite.com',100,TRUE);
        
 Database connection details can be viewed in the application.properties file (coding-challenge\src\main\resources\application.properties)
-       
-Once the app is running, it should be possible to send an HTTP GET request simalar to the one below and receive a reply...
- http://localhost:8080/urlinfo/1/bbc.co.uk/www.bbc.co.uk
- 
+        
 The logic is as follows
 Each table record holds a domain name field and a URL field along with a numerical threat rating and a boolean indicating whether that domain/url should be considered malicious
-Code will look first for the exact url and if found, return that record.
-If the exact url is not found, it will scan for an entry for the domain name and return it if found.
-If no entry is found in the database table, a record will be returned with the given url and values of null and zero for the threat rating and malicious flag respectively.
+Code will look first for a site record with the exact url or a matching domain name and return it if found.
+If no entry is found in the database table, a record will be returned with the given domain and url and values of null and zero for the threat rating and malicious flag respectively.
 
