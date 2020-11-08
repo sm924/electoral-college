@@ -1,15 +1,15 @@
-The app relies on a postgres database containing a table called sites. Below is the SQL to create such a table along with an SQL to insert some sample data...
+The app requires a postgres database containing a table called sites. However, tests can still be run without a database available as they will mock the data required. Below is the SQL to create such a table along with an SQL to insert some sample data...
 
 CREATE TABLE sites
 (
-	id				integer	PRIMARY KEY,
+	id			integer	PRIMARY KEY,
 	domain			varchar(200),
-	url				varchar(200),
-	threat_rating	integer NOT NULL,
+	url			varchar(200),
+	rating			integer NOT NULL,
 	malicious 		boolean	NOT NULL
 );
 
-INSERT INTO SITES (id,domain,url,threat_rating,malicious)
+INSERT INTO SITES (id,domain,url,rating,malicious)
 VALUES (1,'malware4u.com','www.malware4u.com',95,TRUE),
        (2,'bbc.co.uk','www.bbc.co.uk',5,FALSE),
        (3,'dodgysite.com','www.dodgysite.com',100,TRUE);
