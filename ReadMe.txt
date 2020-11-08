@@ -25,8 +25,8 @@ VALUES (1,'malware4u.com','www.malware4u.com',95,TRUE),
        
 Database connection details can be viewed in the application.properties file (coding-challenge\src\main\resources\application.properties)
         
-The logic is as follows
-Each table record holds a domain name field and a URL field along with a numerical threat rating and a boolean indicating whether that domain/url should be considered malicious
-Code will look first for a site record with the exact url or a matching domain name and return it if found.
-If no entry is found in the database table, a record will be returned with the given domain and url and values of null and zero for the threat rating and malicious flag respectively.
+The logic is as follows:-
+ Each table record holds a domain name field and a URL field along with a numerical threat rating and a boolean indicating whether that domain/url should be considered malicious
+ Code will look for a site record with the exact url or a matching domain name and return it if found.
+ If no entry is found in the database table, a record will be returned with the given domain and url and values of null and zero for the threat rating and malicious flag respectively.
 
