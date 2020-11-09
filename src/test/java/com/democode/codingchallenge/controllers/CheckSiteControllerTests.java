@@ -1,6 +1,7 @@
 package com.democode.codingchallenge.controllers;
 
 import com.democode.codingchallenge.models.Site;
+import com.democode.codingchallenge.services.CheckSiteNoDbService;
 import com.democode.codingchallenge.services.CheckSiteService;
 import mockit.Expectations;
 import mockit.Injectable;
@@ -18,7 +19,9 @@ class CheckSiteControllerTests {
     private CheckSiteController checkSiteController;
 
     @Injectable
-    private CheckSiteService    checkSiteService;
+    private CheckSiteService checkSiteService;
+    @Injectable
+    private CheckSiteNoDbService checkSiteNoDbService;
 
     @Test
     void testForNonMalicious() {
@@ -47,7 +50,7 @@ class CheckSiteControllerTests {
     }
 
     @Test
-    void testFindByDomain() {
+    void testFindByUrl() {
         new Expectations() {
             {
                 checkSiteService.getAllSites();
@@ -60,7 +63,7 @@ class CheckSiteControllerTests {
     }
 
     @Test
-    void testFindByUrl() {
+    void testFindByDomain() {
         new Expectations() {
             {
                 checkSiteService.getAllSites();
@@ -82,36 +85,25 @@ class CheckSiteControllerTests {
         };
         Site testSite = checkSiteController.getInfo("notintable.com", "someUrl");
         Assert.assertNull(testSite.getMalicious());
-        Assert.assertNull(testSite.getThreat_rating());
+        Assert.assertNull(testSite.getRating());
     }
 
     private List<Site> getSites() {
         List<Site> sites = new ArrayList<>();
-        Site site1 = new Site();
-        site1.setId(1L);
-        site1.setDomain("bbc.co.uk");
-        site1.setUrl("www.bbc.co.uk");
-        site1.setThreat_rating(1);
-        site1.setMalicious(false);
-
-        Site site2 = new Site();
-        site2.setId(2L);
-        site2.setDomain("malware4u.com");
-        site2.setUrl("www.malware4u.com/dodgy/");
-        site2.setThreat_rating(-1);
-        site2.setMalicious(true);
-
-        Site site3 = new Site();
-        site3.setId(3L);
-        site3.setDomain("verynaughty.com");
-        site3.setUrl("www.verynaughty.com");
-        site3.setThreat_rating(-1);
-        site3.setMalicious(true);
-
-        sites.add(site1);
-        sites.add(site2);
-        sites.add(site3);
+        sites.add(setSite(1,"bbc.co.uk", "www.bbc.co.uk", 1, false));
+        sites.add(setSite(2,"malware4u.com", "www.malware4u.com?verydodgy=true&containsnasties=true", 95, true));
+        sites.add(setSite(3,"verynaughty.com", "www.verynaughty.com", 80, true));
         return sites;
+    }
+
+    private Site setSite(int id, String domain, String url, Integer rating, Boolean malicious) {
+        Site site = new Site();
+        site.setId(id);
+        site.setDomain(domain);
+        site.setUrl(url);
+        site.setRating(rating);
+        site.setMalicious(malicious);
+        return site;
     }
 
 }

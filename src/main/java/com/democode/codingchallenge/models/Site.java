@@ -13,17 +13,17 @@ public class Site {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
     private String domain;
     private String url;
-    private Integer threat_rating;
+    private Integer rating;
     private Boolean malicious;
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -43,12 +43,12 @@ public class Site {
         this.url = url;
     }
 
-    public Integer getThreat_rating() {
-        return threat_rating;
+    public Integer getRating() {
+        return rating;
     }
 
-    public void setThreat_rating(Integer threat_rating) {
-        this.threat_rating = threat_rating;
+    public void setRating(Integer rating) {
+        this.rating = rating;
     }
 
     public Boolean getMalicious() {
@@ -61,6 +61,6 @@ public class Site {
 
     @Override
     public String toString() {
-        return "Domain: "+this.getDomain()+" URL: "+this.getUrl()+" Threat rating: "+this.getThreat_rating()+" Malicicous: "+this.getMalicious();
+        return "Domain: "+this.getDomain()+" URL: "+this.getUrl()+" Threat rating: "+this.getRating()+" Malicicous: "+this.getMalicious();
     }
 }
