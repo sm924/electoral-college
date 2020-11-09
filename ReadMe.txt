@@ -1,6 +1,6 @@
 The app can be imported into an IDE e.g. IntelliJ Idea as a Maven project. It can then be built using mvn clean, install and then it should be possible to run it. It was compiled using Java version 13 (13.0.2).
 
-This app was designed to connect to a (Postgres) database containing a table called sites. It is possible to run it without a database installed and a separate endpoint is available to call the app without a database being present. The url for the non-database version is in the form urlinfo/1/nodb/{domain}/{url}.
+This app was designed to connect to a (Postgres) database named sitelog containing a table called sites. It is possible to run it without a database installed and a separate endpoint is available to call the app without a database being present. The url for the non-database version is in the form urlinfo/1/nodb/{domain}/{url}.
 Also, tests can be run without a database available as they will mock the data required. 
 
 Once the app is running, it should be possible to send an HTTP GET request similar to the one below and receive a reply...
