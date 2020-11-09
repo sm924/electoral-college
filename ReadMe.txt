@@ -21,7 +21,7 @@ CREATE TABLE sites
 );
 
 INSERT INTO SITES (id,domain,url,rating,malicious)
-VALUES (1,'malware4u.com','www.malware4u.com',95,TRUE),
+VALUES (1,'malware4u.com','www.malware4u.com?verydodgy=true&containsnasties=true',95,TRUE),
        (2,'bbc.co.uk','www.bbc.co.uk',5,FALSE),
        (3,'dodgysite.com','www.dodgysite.com',100,TRUE);
        
